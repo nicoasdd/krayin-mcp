@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "atlas-mcp-server": {
+      "command": "node",
+      "args": [
+        "/path/to/atlas-mcp-server/dist/index.js"
+      ],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USER": "neo4j",
+        "NEO4J_PASSWORD": "password123",
+        "LOG_LEVEL": "debug",
+        "NODE_ENV": "development",
+        "GIT_USERNAME": "example-user",
+        "GIT_EMAIL": "user@example.com"
+      },
+      "transportType": "stdio" // Explicitly set transport type (default if omitted)
+    },
+    "github-mcp-server": {
+      "command": "node",
+      "args": [
+        "/path/to/github-mcp-server/build/index.js"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "your-github-token"
+      },
+      "transportType": "stdio" // Explicitly set transport type
+    },
+    "example-http-server": {
+      // For HTTP transport, 'command' is the base URL of the server.
+      "command": "http://localhost:3010",
+      // 'args' are typically ignored for HTTP transport.
+      "args": [],
+      // 'env' is also typically ignored for HTTP transport as the server runs independently.
+      "env": {},
+      // Must specify 'http' for the transport type.
+      "transportType": "http"
+    }
+  }
+}
