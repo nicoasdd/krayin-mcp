@@ -19,6 +19,7 @@ import { config, environment } from "../config/index.js";
 import { ErrorHandler, logger, requestContextService } from "../utils/index.js";
 import { registerEchoResource } from "./resources/echoResource/index.js";
 import { registerEchoTool } from "./tools/echoTool/index.js";
+import { registerKrayinMcpTool } from "./tools/krayinMcpTool/index.js";
 import { startHttpTransport } from "./transports/httpTransport.js";
 import { connectStdioTransport } from "./transports/stdioTransport.js";
 
@@ -76,8 +77,9 @@ async function createMcpServerInstance(): Promise<McpServer> {
 
   try {
     logger.debug("Registering resources and tools...", context);
-    await registerEchoResource(server);
-    await registerEchoTool(server);
+    //await registerEchoResource(server);
+    //await registerEchoTool(server);
+    await registerKrayinMcpTool(server);
     logger.info("Resources and tools registered successfully", context);
   } catch (err) {
     logger.error("Failed to register resources/tools", {

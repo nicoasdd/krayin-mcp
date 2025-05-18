@@ -120,6 +120,20 @@ const EnvSchema = z.object({
     .optional(),
   /** Optional. Comma-separated default OAuth client redirect URIs. */
   OAUTH_PROXY_DEFAULT_CLIENT_REDIRECT_URIS: z.string().optional(),
+  CRM_EMAIL: z
+    .string()
+    .email()
+    .describe("Service account email for CRM login")
+    .optional(),
+  CRM_PASSWORD: z
+    .string()
+    .describe("Service account password for CRM login")
+    .optional(),
+  DEVICE_NAME: z
+    .string()
+    .default("mcp-server")
+    .describe("Device name for CRM login")
+    .optional(),
 });
 
 const parsedEnv = EnvSchema.safeParse(process.env);
@@ -201,6 +215,9 @@ export const config = {
               .filter(Boolean),
         }
       : undefined,
+  crmEmail: env.CRM_EMAIL,
+  crmPassword: env.CRM_PASSWORD,
+  deviceName: env.DEVICE_NAME,
 };
 
 /**
